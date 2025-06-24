@@ -1,0 +1,37 @@
+﻿@model AgriEnergy.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center mb-6">
+    <h1 class="welcome-heading">Welcome to Agri-Energy Connect</h1>
+</div>
+
+<main class="main-content">
+    <section class="mb-5">
+        <p class="lead">
+            This is a digital ecosystem that presents sustainable agriculture with green energy solutions for Farmers and Employees.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <h2 class="h5">Key Features</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Farmers can add products to their profile</li>
+            <li class="list-group-item">Farmers can view their own product listings</li>
+            <li class="list-group-item">Employees can add new farmer profiles</li>
+            <li class="list-group-item">Employees can view all products from specific farmers</li>
+            <li class="list-group-item">Employees can use filters for product searching</li>
+        </ul>
+    </section>
+
+    <div class="d-flex justify-content-center gap-4">
+        <a asp-controller="Account" asp-action="Login" asp-route-role="Employee" class="btn btn-primary btn-lg shadow-sm rounded-pill">
+            Login as Employee
+        </a>
+
+        <a asp-controller="Account" asp-action="Login" asp-route-role="Farmer" class="btn btn-success btn-lg shadow-sm rounded-pill">
+            Login as Farmer
+        </a>
+    </div>
+</main>

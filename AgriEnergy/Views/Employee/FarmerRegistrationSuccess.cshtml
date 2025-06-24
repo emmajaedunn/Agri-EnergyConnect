@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Farmer Added Successfully";
+}
+
+<div class="container py-5 text-center">
+    <h2 class="text-success mb-4">Farmer registered successfully!</h2>
+    <p>@TempData["FarmerRegistered"]</p>
+    <a asp-action="EmployeeDashboard" class="btn btn-primary btn-lg rounded-pill px-5">Return to Dashboard</a>
+</div>

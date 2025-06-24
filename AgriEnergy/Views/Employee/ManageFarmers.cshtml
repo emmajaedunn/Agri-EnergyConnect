@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AgriEnergy.Models.Farmer>
+
+@{
+    ViewData["Title"] = "Manage Farmers";
+}
+
+<div class="container py-5">
+    <h2 class="text-success mb-4 text-center">Manage Farmers</h2>
+
+    <div class="d-flex justify-content-end mb-4">
+        <a asp-action="EmployeeDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+            Return to Dashboard
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped shadow-sm bg-white">
+        <thead class="table-success">
+            <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Contact</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var farmer in Model)
+            {
+                <tr>
+                    <td>@farmer.FullName</td>
+                    <td>@farmer.Email</td>
+                    <td>@farmer.ContactNumber</td>
+                    <td>@farmer.Location</td>
+                    <td>
+                        <a asp-action="EditFarmer" asp-route-id="@farmer.Id" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                        <a asp-action="DeleteFarmer" asp-route-id="@farmer.Id" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

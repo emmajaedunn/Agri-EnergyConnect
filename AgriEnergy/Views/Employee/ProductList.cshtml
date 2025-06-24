@@ -1,0 +1,21 @@
+﻿@model IEnumerable<AgriEnergy.Models.Product>
+
+<h2>Products</h2>
+
+<table>
+    <tr>
+        <th>Farmer</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Production Date</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Farmer?.FullName</td>
+            <td>@product.ProductName</td>
+            <td>@product.ProductCategory</td>
+            <td>@product.ProductionDate.ToShortDateString()</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,35 @@
+﻿@model AgriEnergy.Models.Product
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container py-5">
+    <h2 class="text-center text-success mb-5">Edit Product</h2>
+
+    <div class="d-flex justify-content-end mb-4">
+        <a asp-action="FarmerDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+            Return to Dashboard
+        </a>
+    </div>
+
+    <form asp-action="EditProduct" method="post" class="bg-white p-4 shadow-sm rounded mx-auto" style="max-width: 600px;">
+        <input type="hidden" asp-for="ProductID" />
+
+        <div class="mb-3">
+            <label asp-for="ProductName" class="form-label">Product Name</label>
+            <input asp-for="ProductName" class="form-control" />
+            <span asp-validation-for="ProductName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ProductCategory" class="form-label">Category</label>
+            <input asp-for="ProductCategory" class="form-control" />
+            <span asp-validation-for="ProductCategory" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ProductionDate" class="form-label">Production Date</label>
+            <input asp-for="ProductionDate" type="date" class="form-control" />
+            <span asp-validation-for="ProductionDate" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Update Product</button>
+    </form>
+</div>

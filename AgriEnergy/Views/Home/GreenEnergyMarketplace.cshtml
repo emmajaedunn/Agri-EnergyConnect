@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Green Energy Marketplace";
+}
+
+<div class="container py-5">
+    <h2 class="text-success mb-4 text-center">Green Energy Marketplace</h2>
+    <p class="lead text-center mb-5">
+        A marketplace for green energy solutions tailored to agricultural needs, such as solar-powered irrigation
+        systems, wind turbines for farms, and biogas energy solutions.
+    </p>
+
+    <div class="d-flex justify-content-end mb-4">
+        @if (User.IsInRole("Employee"))
+        {
+            <a asp-controller="Employee" asp-action="EmployeeDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+                Return to Dashboard
+            </a>
+        }
+        else if (User.IsInRole("Farmer"))
+        {
+            <a asp-controller="Farmer" asp-action="FarmerDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+                Return to Dashboard
+            </a>
+        }
+    </div>
+
+    <!-- Product Block 1 -->
+    <div class="border rounded p-4 shadow-sm bg-light mb-4">
+        <h5 class="text-primary mb-2">🔆 Solar-Powered Irrigation System</h5>
+        <p><strong>Provider:</strong> EcoSun Solutions</p>
+        <p><strong>Efficiency:</strong> 85% energy conversion rate</p>
+        <p>Designed to reduce reliance on diesel pumps. Automatically adapts to sunlight levels.</p>
+
+        <div class="mt-2">
+            <strong>Farmer Reviews:</strong>
+            <ul class="mb-2">
+                <li>“Cut my water costs in half!” – Thabo M.</li>
+                <li>“Easy to install and works great in Limpopo.” – Zanele D.</li>
+            </ul>
+        </div>
+
+        <button type="button"
+                class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Get installation support and maintenance plans.">
+            More Info
+        </button>
+    </div>
+
+    <!-- Product Block 2 -->
+    <div class="border rounded p-4 shadow-sm bg-light mb-4">
+        <h5 class="text-primary mb-2">🌬 Wind Turbine (Small-Scale)</h5>
+        <p><strong>Provider:</strong> AgriWind Africa</p>
+        <p><strong>Power Output:</strong> 1.2 kW (ideal for small farms)</p>
+        <p>Low-maintenance wind turbine system suitable for off-grid farms and storage units.</p>
+
+        <div class="mt-2">
+            <strong>Farmer Reviews:</strong>
+            <ul class="mb-2">
+                <li>“Helps power my cold storage reliably.” – Joseph N.</li>
+                <li>“Needed a bit of setup but runs smooth.” – Karabo T.</li>
+            </ul>
+        </div>
+
+        <button type="button"
+                class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Includes battery compatibility and hybrid setup guide.">
+            More Info
+        </button>
+    </div>
+
+    <!-- Product Block 3 -->
+    <div class="border rounded p-4 shadow-sm bg-light mb-4">
+        <h5 class="text-primary mb-2">♻ Biogas Energy Generator</h5>
+        <p><strong>Provider:</strong> BioGreen Tech</p>
+        <p><strong>Capacity:</strong> 3 cubic meters/day</p>
+        <p>Converts animal waste into clean energy. Helps reduce methane emissions and fuel cost.</p>
+
+        <div class="mt-2">
+            <strong>Farmer Reviews:</strong>
+            <ul class="mb-2">
+                <li>“Amazing solution for waste management.” – Fatima L.</li>
+                <li>“Got a subsidy through the municipality.” – Sibusiso K.</li>
+            </ul>
+        </div>
+
+        <button type="button"
+                class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Includes training and grant application support.">
+            More Info
+        </button>
+    </div>
+
+    <!-- Connect with Providers -->
+    <div class="border rounded p-4 shadow-sm bg-light mb-4">
+        <h5 class="text-primary mb-2">🤝 Connect with Green Tech Providers</h5>
+        <p>If you're interested in any product or want custom solutions for your farm, reach out to our verified providers:</p>
+        <ul>
+            <li><strong>EcoSun Solutions:</strong> info@ecosun.co.za | +27 12 345 6789</li>
+            <li><strong>AgriWind Africa:</strong> hello@agriwind.africa | +27 21 987 6543</li>
+            <li><strong>BioGreen Tech:</strong> contact@biogreen.co.za | +27 11 222 3333</li>
+        </ul>
+
+        <button type="button"
+                class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Includes training and grant application support.">
+            Contact Now
+        </button>
+
+    </div>
+</div>
+    
+    
+  

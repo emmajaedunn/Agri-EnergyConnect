@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Farmer Dashboard";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="container py-5">
+    <h1 class="heading-primary">Welcome, Farmer!</h1>
+    <p class="lead text-center mb-5">This is the farmer dashboard where you can add and manage your products in the Agri-Energy Connect Platform.</p>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <a asp-action="AddProduct" asp-controller="Farmer" class="dashboard-card">
+                <h3>Add Product</h3>
+                <p>Upload new farm products with category and production date.</p>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <a asp-action="ViewProducts" asp-controller="Farmer" class="dashboard-card">
+                <h3>View Products</h3>
+                <p>Browse your existing product list and filter by production date or product category.</p>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <a asp-action="ManageProducts" asp-controller="Farmer" class="dashboard-card">
+                <h3>Manage Products</h3>
+                <p>Edit product details, update their details or delete products.</p>
+            </a>
+        </div>
+    </div>
+</div>

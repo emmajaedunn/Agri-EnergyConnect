@@ -1,0 +1,46 @@
+﻿@model AgriEnergy.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<main class="main-content mt-4">
+    <h1 class="heading-primary text-center mb-3">Login</h1>
+
+    @if (TempData["SelectedRole"] != null)
+    {
+        <p class="text-muted text-center mb-4">You are logging in as: <strong>@TempData["SelectedRole"]</strong></p>
+    }
+
+    <form asp-action="Login" method="post" asp-controller="Account"
+          class="p-4 bg-white border rounded shadow-sm mx-auto" style="max-width: 600px;">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" name="SelectedRole" value="@TempData["SelectedRole"]" />
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success btn-lg shadow-sm rounded-pill">Login</button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+        {
+            <div class="alert alert-danger mt-3">@ViewData["ErrorMessage"]</div>
+        }
+    </form>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

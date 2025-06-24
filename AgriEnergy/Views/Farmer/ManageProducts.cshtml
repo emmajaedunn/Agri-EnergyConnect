@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AgriEnergy.Models.Product>
+@{
+    ViewData["Title"] = "Manage Products";
+}
+
+<div class="container py-5">
+    <h2 class="text-success mb-4 text-center">Manage Products</h2>
+
+    <div class="d-flex justify-content-end mb-4">
+        <a asp-action="FarmerDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+            Return to Dashboard
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped shadow-sm bg-white">
+        <thead class="table-success">
+            <tr>
+                <th>Product Name</th>
+                <th>Product Category</th>
+                <th>Production Date</th>
+                <th>Actions</th>
+                 </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.ProductCategory</td>
+                    <td>@product.ProductionDate.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a asp-action="EditProduct" asp-route-id="@product.ProductID" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                        <a asp-action="DeleteProduct" asp-route-id="@product.ProductID" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+

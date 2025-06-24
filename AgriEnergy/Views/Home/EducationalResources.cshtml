@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Educational & Training Resources";
+}
+
+<div class="container py-5">
+    <h2 class="text-success mb-4 text-center">Educational & Training Resources</h2>
+    <p class="lead text-center mb-5">
+        A educational and training resource centre for sharing best practices in sustainable farming, including Online courses, webinars, and workshops on integrating green energy technologies in agriculture.
+    </p>
+
+    <div class="d-flex justify-content-end mb-4">
+        @if (User.IsInRole("Employee"))
+        {
+            <a asp-controller="Employee" asp-action="EmployeeDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+                Return to Dashboard
+            </a>
+        }
+        else if (User.IsInRole("Farmer"))
+        {
+            <a asp-controller="Farmer" asp-action="FarmerDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+                Return to Dashboard
+            </a>
+        }
+    </div>
+
+    <div class="row g-4">
+
+        <!-- Online Course Block -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-2">📘 Online Course: Solar Energy for Smart Farming</h5>
+                <p><strong>Start Date:</strong> 15 July 2025</p>
+                <p><strong>Duration:</strong> 4 weeks (Self-paced)</p>
+                <p><strong>Platform:</strong> AgriLearn Online</p>
+                <p>This course covers the basics of solar energy integration into irrigation, fencing, and greenhouse systems.</p>
+                
+                <!-- More Info Hover Button -->
+                <button type="button"
+                        class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Covers practical installations, solar panel maintenance, and subsidies for farmers.">
+                    More Info
+                </button>
+            </div>
+        </div>
+
+        <!-- Webinar Block -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-2">📺 Webinar: Biogas for Rural Agriculture</h5>
+                <p><strong>Date:</strong> 30 July 2025</p>
+                <p><strong>Time:</strong> 3:00 PM - 4:30 PM (SAST)</p>
+                <p><strong>Presenter:</strong> Dr. Naledi Khumalo (AgriTech SA)</p>
+                <p>Explore how biogas systems can convert farm waste into valuable energy and reduce dependency on fossil fuels.</p>
+
+                <!-- More Info Hover Button -->
+                <button type="button"
+                        class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Covers practical installations, solar panel maintenance, and subsidies for farmers.">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Workshop Block -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-2">🛠️ Workshop: Building Wind-Powered Water Pumps</h5>
+                <p><strong>Date:</strong> 10 August 2025</p>
+                <p><strong>Location:</strong> GreenGrow Farm, Western Cape</p>
+                <p><strong>Time:</strong> 9:00 AM - 2:00 PM</p>
+                <p>Hands-on session on designing and constructing low-cost wind pumps for off-grid water access.</p>
+
+                <!-- More Info Hover Button -->
+                <button type="button"
+                        class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Covers practical installations, solar panel maintenance, and subsidies for farmers.">
+                    Book Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Resource Info Block -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-2">📚 Guide: Benefits of Renewable Energy on Farms</h5>
+                <p><strong>Available:</strong> Downloadable PDF</p>
+                <p><strong>Publisher:</strong> Department of Agriculture & Rural Development</p>
+                <p><strong>Web Link:</strong> https://www.ucs.org/resources/benefits-renewable-energy-use</p>
+                <p>This guide outlines financial savings, improved crop yield, and reduced carbon footprint through sustainable power solutions.</p>
+
+                <!-- More Info Hover Button -->
+                <button type="button"
+                        class="btn btn-outline-success btn-sm rounded-pill mt-2"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Covers practical installations, solar panel maintenance, and subsidies for farmers.">
+                    More Info
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    
+    
+    

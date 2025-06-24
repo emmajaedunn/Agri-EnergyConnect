@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+/* ===============================
+   Global Styles
+=============================== */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #1b3e20;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+    body.employee-dashboard {
+        background-color: #f5fff3;
+    }
+
+/* ===============================
+   Typography & Headings
+=============================== */
+
+.welcome-heading {
+    font-size: 4.2rem;
+    font-weight: 1000;
+    color: #2c5f2d;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.heading-primary {
+    color: #198754;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 500;
+    color: #2d5c34;
+    letter-spacing: 1px;
+}
+
+/* ===============================
+   Navigation Bar
+=============================== */
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand, .nav-link {
+    font-weight: 400;
+    color: #2d5c34 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+    .navbar-brand:hover, .nav-link:hover {
+        color: #4caf50 !important;
+    }
+
+.navbar-brand,
+.nav-link {
+    font-weight: 100;
+    color: #2d5c34 !important;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+    .navbar-brand:hover,
+    .nav-link:hover {
+        color: #4caf50 !important;
+        transform: scale(1.05);
+    }
+
+/* ===============================
+   Forms & Inputs
+=============================== */
+
+form {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+label, input, select, button {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+}
+
+    input.form-control {
+        border-radius: 6px;
+        padding: 10px;
+        font-weight: 300;
+        border: 1px solid #ccc;
+    }
+
+        input.form-control:focus {
+            border-color: #4caf50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+table {
+    background-color: #fefefe;
+}
+
+thead {
+    background-color: #c8e6c9; /* light green */
+}
+
+
+/* ===============================
+   Buttons
+=============================== */
+
+.btn {
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Primary (used for Employee login) */
+.btn-primary {
+    background: #4caf50;
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+    .btn-primary:hover {
+        background: #388e3c;
+        box-shadow: 0 6px 20px rgba(56, 142, 60, 0.6);
+    }
+
+/* Success (used for Farmer login) */
+.btn-success {
+    background: #81c784;
+    box-shadow: 0 5px 15px rgba(129, 199, 132, 0.4);
+}
+
+    .btn-success:hover {
+        background: #4caf50;
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+    }
+
+/* ===============================
+   Cards & Dashboard Blocks
+=============================== */
+
+.dashboard-card {
+    display: block;
+    background-color: #dff5d2;
+    border: 1px solid #bfe2ae;
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    color: #2d5c34;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+    .dashboard-card:hover {
+        background-color: #c8ebbb;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .dashboard-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: #388e3c;
+    }
+
+    .dashboard-card p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+/* ===============================
+   Content Layout
+=============================== */
+
+.main-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    max-width: 700px;
+    margin: auto;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    flex: 1 0 auto;
+}
+
+.lead {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: #3e5d28;
+    text-align: center;
+}
+
+.d-flex {
+    margin-top: 2.5rem;
+}
+
+/* ===============================
+   Lists
+=============================== */
+
+.list-group-item {
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: #d9efcf;
+    color: #305832;
+    font-weight: 500;
+    box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+    transition: background 0.3s ease;
+}
+
+    .list-group-item:hover {
+        background: #c5e1a5;
+    }
+
+/* ===============================
+   Footer
+=============================== */
+
+footer {
+    background-color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    padding: 0.1rem 0;
+    color: #1b3e20;
+    font-size: 0.75rem;
+    scroll-margin-bottom: inherit;
+}
+.bare-input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #2d5c34;
+    color: #1b3e20;
+    font-size: 14px;
+    padding: 6px 2px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+    .bare-input:focus {
+        outline: none;
+        border-bottom: 2px solid #4caf50;
+    }
+
+    .bare-input::placeholder {
+        color: #444;
+        font-style: italic;
+    }

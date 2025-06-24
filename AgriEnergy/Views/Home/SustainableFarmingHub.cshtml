@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Sustainable Farming Hub";
+}
+
+<div class="container py-5">
+    <h2 class="text-success mb-4 text-center">Sustainable Farming Hub</h2>
+    <p class="lead text-center mb-5">
+        A resource centre for sharing best practices in sustainable farming, including organic farming techniques,
+        water conservation methods, and farm maintenance.
+    </p>
+
+    <div class="d-flex justify-content-end mb-4">
+        @if (User.IsInRole("Employee"))
+        {
+            <a asp-controller="Employee" asp-action="EmployeeDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+                Return to Dashboard
+            </a>
+        }
+        else if (User.IsInRole("Farmer"))
+        {
+            <a asp-controller="Farmer" asp-action="FarmerDashboard" class="btn btn-outline-success btn-sm rounded-pill px-3 py-1">
+                Return to Dashboard
+            </a>
+        }
+    </div>
+    
+    <div class="row g-4">
+        <!-- Block 1 -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-3">Organic Farming Techniques</h5>
+                <p>Learn about natural fertilizers, composting, crop rotation, and pest control using eco-friendly methods.</p>
+            </div>
+        </div>
+
+        <!-- Block 2 -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-3">Water Conservation Methods</h5>
+                <p>Explore drip irrigation, rainwater harvesting, and soil moisture retention practices for sustainable water use.</p>
+            </div>
+        </div>
+
+        <!-- Block 3: Forums Header -->
+        <div class="col-12">
+            <h4 class="text-success mt-4 border-bottom pb-2">Interactive Forums & Discussion Boards</h4>
+        </div>
+
+        <!-- Block 4 -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-3">Ask a Question</h5>
+                <p>Post questions about sustainable farming, organic practices, and more. Get help from experienced farmers.</p>
+            </div>
+        </div>
+
+        <!-- Block 5 -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-3">Share Experiences</h5>
+                <p>Farmers can share real-world success stories, common challenges, and practical advice with others.</p>
+            </div>
+        </div>
+
+        <!-- Block 6 -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-3">Collaborate on Initiatives</h5>
+                <p>Work together on green projects or co-farming ventures and participate in sustainable campaigns.</p>
+            </div>
+        </div>
+
+        <!-- Block 7 -->
+        <div class="col-md-6">
+            <div class="border rounded p-4 shadow-sm bg-light h-100">
+                <h5 class="text-primary mb-3">Expert Advice</h5>
+                <p>Get tips from agronomists, government extension officers, and NGOs on transitioning to sustainable models.</p>
+            </div>
+        </div>
+    </div>
+</div>

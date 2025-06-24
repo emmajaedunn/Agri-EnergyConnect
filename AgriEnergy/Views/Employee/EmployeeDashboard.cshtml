@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Employee Dashboard";
+    ViewData["BodyClass"] = "employee-dashboard";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="container py-5">
+    <h1 class="heading-primary">Welcome, Employee!</h1>
+    <p class="lead text-center mb-5">This is the employee dashboard where you can manage farmers and explore products in the Agri-Energy Connect Platform.</p>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <a asp-action="AddFarmer" asp-controller="Employee" class="dashboard-card">
+                <h3>Add Farmer</h3>
+                <p>Add new farmers and capture essential details like name, farm location, and contact info.</p>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <a asp-action="ViewFarmers" asp-controller="Employee" class="dashboard-card">
+                <h3>View Farmers</h3>
+                <p>Browse all registered farmers and their product listings.</p>
+            </a>
+
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <a asp-action="ManageFarmers" asp-controller="Employee" class="dashboard-card">
+                <h3>Manage Farmers</h3>
+                <p>Edit farmer profiles, update their records, or remove outdated entries.</p>
+            </a>
+        </div>
+    </div>
+</div>
