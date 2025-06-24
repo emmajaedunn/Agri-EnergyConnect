@@ -19,7 +19,6 @@ namespace AgriEnergy.Models
         [Required]
         public string Location { get; set; }
 
-        // ✅ These two should NOT be required, because they are set server-side
         public string? UserId { get; set; } 
 
         public ApplicationUser? ApplicationUser { get; set; } 

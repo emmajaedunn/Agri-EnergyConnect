@@ -19,7 +19,7 @@ namespace AgriEnergy.Models
 
         public int FarmerId { get; set; }
 
-        [NotMapped] // 👈 Prevents model binding/validation from requiring this
+        [NotMapped] 
         public Farmer? Farmer { get; set; }
     }
 }
