@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace AgriEnergy.Controllers
 {
+    // Only users with the "Employee" role can access this controller
     [Authorize(Roles = "Employee")]
     public class EmployeeController : Controller
     {
@@ -17,6 +18,7 @@ namespace AgriEnergy.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        // Constructor to inject required services
         public EmployeeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
@@ -24,28 +26,31 @@ namespace AgriEnergy.Controllers
             _roleManager = roleManager;
         }
 
+        // Employee dashboard landing page
         public IActionResult EmployeeDashboard()
         {
             return View();
         }
 
+        // GET: Show the form to add a new farmer
         [HttpGet]
         public IActionResult AddFarmer()
         {
             return View();
         }
 
+        // POST: Handles creation of new farmer user and farmer profile
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddFarmer(Farmer farmer)
         {
+            // Validate the input form
             if (!ModelState.IsValid)
             {
-                // Log or display model validation errors
                 return View(farmer);
             }
 
-            // Check if user/email already exists
+            // Check if a user with this email already exists
             var existingUser = await _userManager.FindByEmailAsync(farmer.Email);
             if (existingUser != null)
             {
@@ -53,6 +58,7 @@ namespace AgriEnergy.Controllers
                 return View(farmer);
             }
 
+            // Create a new ApplicationUser for login
             var user = new ApplicationUser
             {
                 UserName = farmer.Email,
@@ -60,9 +66,11 @@ namespace AgriEnergy.Controllers
                 EmailConfirmed = true
             };
 
+            // Create the user with a default password
             var result = await _userManager.CreateAsync(user, "Farm123!");
             if (!result.Succeeded)
             {
+                // Show errors if user creation fails
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
@@ -71,28 +79,37 @@ namespace AgriEnergy.Controllers
                 return View(farmer);
             }
 
+            // Assign the new user to the "Farmer" role
             await _userManager.AddToRoleAsync(user, "Farmer");
 
+            // Link the ApplicationUser to the Farmer profile
             farmer.UserId = user.Id;
 
+            // Save farmer profile to the database
             _context.Farmers.Add(farmer);
             await _context.SaveChangesAsync();
 
+            // TempData used to pass success message to success page
             TempData["FarmerRegistered"] = $"Farmer registered successfully! Login: {farmer.Email} | Password: Farm123!";
             return RedirectToAction(nameof(FarmerRegistrationSuccess));
         }
 
+        // Displays a success message after registering a farmer
         public IActionResult FarmerRegistrationSuccess()
         {
             return View();
         }
 
+        // Displays a list of farmers and optionally filters by product category or production date
         public IActionResult ViewFarmers(string categoryFilter = "", DateTime? productionDate = null)
         {
+            // Check if any filters are applied
             bool isFiltering = !string.IsNullOrEmpty(categoryFilter) || productionDate.HasValue;
 
+            // Load farmers and include their associated products
             var query = _context.Farmers.Include(f => f.Products).AsQueryable();
 
+            // Apply filtering based on provided parameters
             if (isFiltering)
             {
                 // Filter farmers who have matching products
@@ -118,51 +135,20 @@ namespace AgriEnergy.Controllers
                 }
             }
 
+            // Used in the view to conditionally display a message or results
             ViewBag.IsFiltering = isFiltering;
 
             return View(farmers);
         }
 
-
-
-
-
-        /*public IActionResult ViewFarmers(string categoryFilter = "", DateTime? productionDate = null)
-        {
-            var farmers = _context.Farmers
-                .Include(f => f.Products)
-                .ToList();
-
-            foreach (var farmer in farmers)
-            {
-                if (!string.IsNullOrEmpty(categoryFilter))
-                {
-                    farmer.Products = farmer.Products
-                        .Where(p => p.ProductCategory.Contains(categoryFilter, StringComparison.OrdinalIgnoreCase))
-                        .ToList();
-                }
-
-                if (productionDate.HasValue)
-                {
-                    var date = productionDate.Value.Date;
-                    farmer.Products = farmer.Products
-                        .Where(p => p.ProductionDate.Date == date)
-                        .ToList();
-                }
-            }
-
-            // NO filtering of farmers here, so all farmers show up
-
-            return View(farmers);
-        }*/
-
-
+        // Displays a list of all farmers with options to edit/delete
         public IActionResult ManageFarmers()
         {
             var farmers = _context.Farmers.ToList();
             return View(farmers);
         }
 
+        // GET: Displays the form to edit a farmer's details
         [HttpGet]
         public IActionResult EditFarmer(int id)
         {
@@ -172,6 +158,7 @@ namespace AgriEnergy.Controllers
             return View(farmer);
         }
 
+        // POST: Updates the farmer details in the database
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditFarmer(Farmer farmer)
@@ -186,6 +173,7 @@ namespace AgriEnergy.Controllers
             return View(farmer);
         }
 
+        // GET: Deletes a farmer by ID
         [HttpGet]
         public IActionResult DeleteFarmer(int id)
         {
@@ -207,111 +195,3 @@ namespace AgriEnergy.Controllers
 
 
 
-
-
-
-
-
-
-/*
-[Authorize(Roles = "Employee")]
-public class EmployeeController : Controller
-{
-    private readonly ApplicationDbContext _context;
-
-    public EmployeeController(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-
-    public IActionResult EmployeeDashboard() => View();
-
-    [HttpGet]
-    public IActionResult AddFarmer() => View();
-
-    [HttpPost]
-    public IActionResult AddFarmer(Farmer farmer)
-    {
-        if (ModelState.IsValid)
-        {
-            _context.Farmers.Add(farmer);
-            _context.SaveChanges();
-
-            TempData["FarmerRegistered"] = "Farmer registered successfully!";
-            return RedirectToAction("FarmerRegistrationSuccess");
-        }
-
-        return View(farmer);
-    }
-
-
-    public IActionResult FarmerRegistrationSuccess()
-    {
-        return View();
-    }
-
-    public IActionResult ViewFarmers(string categoryFilter = "", DateTime? productionDate = null)
-    {
-        var farmers = _context.Farmers
-            .Include(f => f.Products)
-            .AsQueryable();
-
-        // Apply filters only if needed
-        if (!string.IsNullOrEmpty(categoryFilter))
-        {
-            farmers = farmers.Where(f => f.Products.Any(p => EF.Functions.Like(p.ProductCategory, $"%{categoryFilter}%")));
-        }
-
-        if (productionDate.HasValue)
-        {
-            var date = productionDate.Value.Date;
-            farmers = farmers.Where(f => f.Products.Any(p => p.ProductionDate.Date == date));
-        }
-
-        return View(farmers.ToList()); // This should return all farmers, not filtered by login
-    }
-
-
-    public IActionResult ManageFarmers()
-    {
-        var farmers = _context.Farmers.ToList();
-        return View(farmers);
-    }
-
-    [HttpGet]
-    public IActionResult EditFarmer(int id)
-    {
-        var farmer = _context.Farmers.Find(id);
-        if (farmer == null) return NotFound();
-
-        return View(farmer);
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult EditFarmer(Farmer farmer)
-    {
-        if (ModelState.IsValid)
-        {
-            _context.Farmers.Update(farmer);
-            _context.SaveChanges();
-            TempData["SuccessMessage"] = "Farmer updated successfully!";
-            return RedirectToAction("ManageFarmers");
-        }
-        return View(farmer);
-    }
-
-    [HttpGet]
-    public IActionResult DeleteFarmer(int id)
-    {
-        var farmer = _context.Farmers.Find(id);
-        if (farmer != null)
-        {
-            _context.Farmers.Remove(farmer);
-            _context.SaveChanges();
-            TempData["SuccessMessage"] = "Farmer deleted successfully!";
-        }
-        return RedirectToAction("ManageFarmers");
-    }
-}
-*/

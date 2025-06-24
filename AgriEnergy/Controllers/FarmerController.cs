@@ -84,7 +84,6 @@ namespace AgriEnergy.Controllers
         }
 
         // GET: View Products
-     
         public IActionResult ViewProducts(DateTime? productionDate, string category)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -166,8 +165,7 @@ namespace AgriEnergy.Controllers
             productInDb.ProductCategory = product.ProductCategory;
             productInDb.ProductionDate = product.ProductionDate;
 
-            // FarmerId stays unchanged!
-
+            // FarmerId stays unchanged
             _context.SaveChanges();
 
             TempData["SuccessMessage"] = "Product updated successfully!";

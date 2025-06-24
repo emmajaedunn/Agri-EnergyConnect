@@ -3,7 +3,7 @@ using AgriEnergy.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AgriEnergy.Controllers
-{
+{ 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
