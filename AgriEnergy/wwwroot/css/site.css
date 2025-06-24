@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 /* ===============================
-   Global Styles
+   Global Styles 
 =============================== */
 
 html, body {
@@ -120,7 +120,6 @@ table {
 thead {
     background-color: #c8e6c9; /* light green */
 }
-
 
 /* ===============================
    Buttons
